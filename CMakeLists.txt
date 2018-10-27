@@ -8,12 +8,7 @@ set(SDL2_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/SDL2")
 
 find_package(SDL2 REQUIRED)
 
-
-
 add_library(BuildSettings INTERFACE)
-
-
-
 				   
 set(PLATFORM_WIN32 FALSE CACHE INTERNAL "")
 set(PLATFORM_LINUX FALSE CACHE INTERNAL "")
@@ -37,8 +32,8 @@ else()
 endif()
 
 #add_subdirectory(NativeApp)
+add_subdirectory(Thirdparty)
 add_subdirectory(Platform)
-
 
 
 # Use c++11

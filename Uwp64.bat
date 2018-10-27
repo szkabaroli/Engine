@@ -1,1 +1,0 @@
-cmake -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10.0 -H. -B./builds/UWP64 -G "Visual Studio 15 2017 Win64"

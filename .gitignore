@@ -1,3 +1,5 @@
 Builds/*
 Sample/*
 NativeApp/*
+.vs
+.idea

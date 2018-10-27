@@ -4,7 +4,7 @@ project(Platform)
 
 if(PLATFORM_WIN32)
 
-	set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Windows/Win32Main.cpp)
+	set(SOURCE_FILES Windows/Win32Main.cpp)
 	
 	include_directories(${SDL2_INCLUDE_DIR})
 	
@@ -16,7 +16,7 @@ if(PLATFORM_WIN32)
 
 elseif(PLATFORM_LINUX)
 
-	set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Linux/LinuxMain.cpp)
+	set(SOURCE_FILES Linux/LinuxMain.cpp)
 	
 	include_directories(${SDL2_INCLUDE_DIR})
 
@@ -25,7 +25,16 @@ elseif(PLATFORM_LINUX)
 	target_link_libraries(NativeApp ${SDL2_LIBRARY})
 
 elseif(PLATFORM_ANDROID)
-	set(SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Android/AndroidMain.cpp)
+
+	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
+
+	set(SOURCE_FILES Android/AndroidMain.cpp Android/AndroidApp.cpp Android/AndroidApp.h NativeApp.h Android/VulkanLoader.hpp)
+
 	add_library(NativeApp SHARED ${SOURCE_FILES})
+
+	target_include_directories(NativeApp PRIVATE ${NATIVE_APP_GLUE_INCLUDE}/)
+
+	target_link_libraries(NativeApp NativeAppGlue BuildSettings OpenSLES android log)
+
 endif()
 

@@ -1,1 +1,0 @@
-cd Builds && cmake .. && cmake --build .
