@@ -3,3 +3,6 @@ Sample/*
 NativeApp/*
 .vs
 .idea
+
+Thirdparty
+!Thirdparty/*.cmake
