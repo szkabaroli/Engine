@@ -4,5 +4,4 @@ NativeApp/*
 .vs
 .idea
 
-Thirdparty
-!Thirdparty/*.cmake
+Thirdparty/SDL2
