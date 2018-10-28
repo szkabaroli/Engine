@@ -1,10 +1,5 @@
 #pragma once
 
-#define FIRST_ARG_(N, ...) N
-#define FIRST_ARG(args) FIRST_ARG_ args
-
-
-
 #if defined(PLATFORM_WIN32) || defined(PLATFORM_LINUX)
 
     #include <iostream>

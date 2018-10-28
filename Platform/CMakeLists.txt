@@ -22,7 +22,7 @@ elseif(PLATFORM_LINUX)
 
 	add_executable(NativeApp ${SOURCE_FILES})
 
-	target_link_libraries(NativeApp ${SDL2_LIBRARY})
+	target_link_libraries(NativeApp ${SDL2_LIBRARY} BuildSettings)
 
 elseif(PLATFORM_ANDROID)
 
