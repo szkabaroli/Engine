@@ -1,9 +1,9 @@
 #pragma once
-#include "../Logger.h"
+#include "Logger.h"
 
 class GameEngine {
 public:
-    void Start();
+    void Init();
     void Tick();
     void Close();
 };

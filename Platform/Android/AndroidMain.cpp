@@ -6,6 +6,8 @@
 
 #include "AndroidApp.h"
 #include "../Logger.h"
+#include "../GameEngine.h"
+#include "vulkan_wrapper.h"
 
 void android_main(android_app* State)
 {
@@ -15,15 +17,18 @@ void android_main(android_app* State)
 
     State->userData = Application;
     State->onAppCmd = Application->HandleCmd;
-    State->onAppInput = Application->HandleInput();
+    State->onInputEvent = Application->HandleInput;
 
-    //Engine.Init();
+    GameEngine* Engine = new GameEngine();
 
-    /*Application->CreateAudioEngine();
+    InitVulkan();
+
+    Engine->Init();
+
+    Application->CreateAudioEngine();
     Application->CreateAudioPlayerFromManager(mgr);
 
     Application->SetAudioPlayerState(true);
-*/
 
     while(true)
     {
@@ -34,14 +39,12 @@ void android_main(android_app* State)
 
         while((id = ALooper_pollAll( Application->IsRunning() ? 0 : -1, NULL, &events, (void**)&Source )) >= 0 )
         {
-            // Process this event.
             if( Source != NULL )
                 Source->process( State, Source );
 
-
-            // Check if we are exiting.
             if(State->destroyRequested)
             {
+                Engine->Close();
                 Application->ReleaseAudioEngine();
                 return;
             }
@@ -49,10 +52,7 @@ void android_main(android_app* State)
 
         if( Application->IsRunning() )
         {
-            // Drawing is throttled to the screen update rate, so there
-            // is no need to do timing here.
-
-            //Engine.Tick();
+            Engine->Tick();
             std::this_thread::sleep_for(std::chrono::milliseconds(16));
 
         }

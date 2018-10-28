@@ -1,6 +1,17 @@
 #pragma once
+#include "Asset.h"
 
-class FileSystem {
+enum EAssetType {
+    TextAsset
+    AudioAsset
+    UnsupportedAsset
+};
+
+
+class AssetManager {
 public:
-    void OpenFile(std::string path)
+    Asset Open(std::string InFilePath);
+    Asset Open(std::string InFilePath, EAssetType InType);
+
+    EFileExtension GetExtension(std::string FilePath);
 };

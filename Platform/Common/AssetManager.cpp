@@ -1,12 +1,31 @@
 #include "AssetManager.h"
 
-void FileSystem::OpenFile(std::string path)
+Asset* AssetManager::Open(std::string InFilePath, EAssetType InType)
 {
-    std::fstream fs;
-    fs.open ("test.txt", std::fstream::in | std::fstream::out | std::fstream::app);
 
-    fs << " more lorem ipsum";
 
-    fs.close();
 
+
+    return new Asset();
+}
+
+Asset* AssetManager::Open(std::string InFilePath)
+{
+    std::string ext = path.substr(path.find_last_of(".") + 1);
+
+    EAssetType Type
+
+    switch(ext)
+    {
+        case "txt":
+            Type = TextAsset;
+            break
+        case "mp4":
+            Type = AudioAsset;
+        default:
+            Type = UnsupportedAsset;
+            return nullptr;
+    }
+
+    return Open(InFilePath, Type);
 }

@@ -1,6 +1,6 @@
 #include "GameEngine.h"
 
-void GameEngine::Start() {
+void GameEngine::Init() {
     LOG_INFO("Engine", "Engine started!")
 }
 

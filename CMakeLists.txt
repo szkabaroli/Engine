@@ -6,7 +6,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/cmake")
 
 set(SDL2_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/SDL2")
 
-
+set(APP_NAME "NativeApp")
 
 add_library(BuildSettings INTERFACE)
 				   
