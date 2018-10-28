@@ -1,5 +1,4 @@
 #include "AndroidApp.h"
-#include <android/native_window_jni.h>
 
 #define OPENSLES_CALL(x) if(x != SL_RESULT_SUCCESS) __android_log_print(ANDROID_LOG_WARN, "Audio", "Error at: %d", #x);;
 
@@ -42,9 +41,6 @@ void AndroidApp::HandleCmd(struct android_app *State, int32_t cmd)
         case APP_CMD_DESTROY:
 
             break;
-
-        default:
-            __android_log_print(ANDROID_LOG_WARN, "Engine", "Event not handled: %d", cmd);
     }
 }
 
@@ -93,11 +89,11 @@ void AndroidApp::CreateAudioPlayerFromManager(AAssetManager* Manager)
 
     if (!Asset)
     {
-        __android_log_print(ANDROID_LOG_ERROR, "Audio", "Failed to load: %d", FileName);
+        LOG_ERROR("Audio", "Failed to load: %s", FileName);
     }
     else
     {
-        __android_log_print(ANDROID_LOG_INFO, "Audio", "Success loaded");
+        LOG_INFO("Audiop", "Succesfuly loaded audio");
     }
 
     off_t start, length;

@@ -6,7 +6,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/cmake")
 
 set(SDL2_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/SDL2")
 
-find_package(SDL2 REQUIRED)
+
 
 add_library(BuildSettings INTERFACE)
 				   
@@ -29,6 +29,10 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Android")
 	target_compile_definitions(BuildSettings INTERFACE PLATFORM_ANDROID=1)
 else()
     message(FATAL_ERROR "Target platform: Unsupported!")
+endif()
+
+if(NOT PLATFORM_ANDROID)
+    find_package(SDL2 REQUIRED)
 endif()
 
 #add_subdirectory(NativeApp)

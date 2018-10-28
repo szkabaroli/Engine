@@ -1,13 +1,11 @@
 #include <memory>
 #include <errno.h>
 #include <vector>
-#include <android/log.h>
 #include <thread>
 #include <chrono>
 
 #include "AndroidApp.h"
-#include "VulkanLoader.hpp"
-
+#include "../Logger.h"
 
 void android_main(android_app* State)
 {
@@ -17,33 +15,15 @@ void android_main(android_app* State)
 
     State->userData = Application;
     State->onAppCmd = Application->HandleCmd;
-
-
+    State->onAppInput = Application->HandleInput();
 
     //Engine.Init();
 
-    InitVulkan();
-
-    Application->CreateAudioEngine();
+    /*Application->CreateAudioEngine();
     Application->CreateAudioPlayerFromManager(mgr);
 
     Application->SetAudioPlayerState(true);
-
-    VkInstance Instance;
-
-    std::vector<const char *> instanceExt;
-    instanceExt.push_back("VK_KHR_surface");
-    instanceExt.push_back("VK_KHR_android_surface");
-
-    VkInstanceCreateInfo createInfo;
-    memset(&createInfo, 0, sizeof(createInfo));
-    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    createInfo.enabledExtensionCount = static_cast<uint32_t>(instanceExt.size());
-    createInfo.ppEnabledExtensionNames = instanceExt.data();
-
-
-    vkCreateInstance(&createInfo, nullptr, &Instance);
-
+*/
 
     while(true)
     {

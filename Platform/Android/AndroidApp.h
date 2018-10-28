@@ -1,9 +1,8 @@
 #pragma once
 
 #include <memory>
-#include <android_native_app_glue.h>
-#include <android/log.h>
-
+#include "../Logger.h"
+#include "android_native_app_glue.h"
 #include <android/asset_manager.h>
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
